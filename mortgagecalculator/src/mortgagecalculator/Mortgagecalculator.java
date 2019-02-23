@@ -12,8 +12,10 @@ import java.util.logging.Logger;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -59,28 +61,31 @@ public class Mortgagecalculator extends Application {
                 for(String s : strings) {
                     System.out.println(s);
                     Text t = new Text(s);
-                    t.setWrappingWidth(250);
+                    t.setWrappingWidth(350);
                     v.getChildren().add(t);
                 }
             }
         });
         
         v.setSpacing(10);
+        v.setPadding(new Insets(10,10,10,10));
         v.setMinHeight(100);
         
         HBox h = new HBox();
         h.getChildren().addAll(fileButton, showButton);
-        h.setSpacing(10);
+        h.setSpacing(50);
+        h.setPadding(new Insets(10,10,10,10));
         
-        GridPane root = new GridPane();
+        BorderPane root = new BorderPane();
+        root.minHeight(400);
+        root.minWidth(400);
         
-        GridPane.setConstraints(v, 0, 0);
-        GridPane.setConstraints(h, 0, 1);
-        root.getChildren().addAll(v, h);
+        root.setCenter(v);
+        root.setBottom(h);
         
-        Scene scene = new Scene(root, 300, 250);
+        Scene scene = new Scene(root, 400, 400);
         
-        primaryStage.setTitle("Hello World!");
+        primaryStage.setTitle("Mortgage Calculator");
         primaryStage.setScene(scene);
         primaryStage.show();
     }
