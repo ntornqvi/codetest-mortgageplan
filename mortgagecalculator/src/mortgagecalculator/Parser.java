@@ -68,6 +68,7 @@ public class Parser {
     public String parse(String line, int x) {
         ArrayList<String> matches = new ArrayList();
         ArrayList<String> forCalc = new ArrayList();
+        String name = null;
         Pattern regex = Pattern.compile("([^\"][^,]*|\".+?\")\\s*");
         Matcher regexMatcher = regex.matcher(line);
         while(regexMatcher.find()) {
@@ -78,7 +79,9 @@ public class Parser {
             match = match.replace(",", " ");
             match = match.replace("\"", " ");
             match = match.trim();
-            if(y != 0) {
+            if(y == 0) {
+                name = match;
+            } else {
                 forCalc.add(match);
             }
             ++y;
@@ -88,7 +91,7 @@ public class Parser {
         
         calculated = calculate(forCalc);
         
-        String s = "Prospect" + " " + x + ": " + forCalc.get(0) + 
+        String s = "Prospect" + " " + x + ": " + name + 
                 " wants to borrow " + calculated.get(0) + " for a period of " + 
                 calculated.get(1) + " years and pay " + calculated.get(2) +
                 " each month.";

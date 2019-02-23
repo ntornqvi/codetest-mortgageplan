@@ -59,7 +59,6 @@ public class Mortgagecalculator extends Application {
                     Logger.getLogger(Mortgagecalculator.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 for(String s : strings) {
-                    System.out.println(s);
                     Text t = new Text(s);
                     t.setWrappingWidth(350);
                     v.getChildren().add(t);
